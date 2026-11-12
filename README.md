@@ -967,6 +967,15 @@ esto sirva como una vista financiera de verdad y no solo un sumador:
 Ambas alternan (toggle) el estado `cobrado` — llamarlo dos veces lo
 regresa a "pendiente". Exclusivas de admin.
 
+## Novedades recientes (2026-11)
+
+- **Multi-negocio**: cada venta/proyecto se puede asignar a un negocio con su propio nombre y logo; los tickets de venta y proyecto se personalizan por negocio; Finanzas incluye desglose por negocio y filtro.
+- **Seguridad reforzada**: protección CSRF en todos los POST, cabeceras de seguridad (CSP, X-Frame-Options, etc.), cookies de sesión endurecidas, tokens de app hasheados en BD, rate limiting en login, validación de permisos en tickets.
+- **Dashboard configurable**: widgets por rol con tamaño ajustable por cuadrícula (12 columnas), incluyendo citas pendientes.
+- **Navegación agrupada** por dominio y sidebar fijo; modo oscuro opcional.
+- **Eliminado el módulo de timbrado** y todo lo relacionado (contribuyentes, PAC, lotes), dejando el ERP enfocado en ventas, proyectos, inventario y finanzas.
+- **Reinicio limpio de BD** conservando el admin.
+
 ## Abonos (control de pagos de un proyecto)
 
 Dentro de cada proyecto **externo** (`tareas.php?id=N`), junto a la sección
