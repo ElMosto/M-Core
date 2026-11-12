@@ -1,0 +1,43 @@
+# Base de datos y archivos sensibles
+storage/timbra.sqlite
+storage/timbra.sqlite-*
+storage/csd/
+storage/.rate_limit.json
+storage/.tokens_hasheados
+storage/*.log
+
+# Archivos subidos por usuarios (logos, avatares, fotos)
+assets/avatars/*
+!assets/avatars/.gitkeep
+assets/branding/*
+!assets/branding/.gitkeep
+assets/negocios/*
+!assets/negocios/.gitkeep
+
+# Secretos y certificados
+.env
+.env.*
+*.pem
+*.key
+*.cer
+*.crt
+*.p12
+*.pfx
+
+# Temporales / cache
+tmp/
+temp/
+cache/
+*.tmp
+*.log
+
+# Sistema / IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Node / PHP (por si a futuro)
+node_modules/
+vendor/
+composer.lock

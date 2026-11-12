@@ -1,0 +1,67 @@
+/* ==========================================================================
+   Ticket imprimible — usado por ticket-venta.php y ticket-proyecto.php.
+   Pensado para verse bien tanto en pantalla como al imprimir (Ctrl+P /
+   window.print()), sin depender de ninguna librería de PDF.
+
+   --ticket-brand/--ticket-brand-dark/--ticket-ink: variables con el valor
+   de fábrica como respaldo — la página las sobreescribe con los colores
+   configurados en Apariencia (ver timbra_apariencia_css_vars()).
+   ========================================================================== */
+
+body{
+  background:#EEF2F0;
+  font-family:'IBM Plex Mono', ui-monospace, monospace;
+  color:#16211F;
+  padding:24px 12px;
+}
+
+.ticket{
+  max-width:420px;
+  margin:0 auto;
+  background:#fff;
+  border:1px solid #DAE3E0;
+  border-radius:10px;
+  padding:24px 22px;
+  box-shadow:0 8px 24px -12px rgba(18,33,31,.15);
+}
+
+.ticket-header{ text-align:center; margin-bottom:16px; }
+.ticket-header .marca{ font-family:'Fraunces', serif; font-size:1.2rem; font-weight:600; color:var(--ticket-ink, #12211F); }
+.ticket-header .marca img{ max-height:36px; max-width:140px; object-fit:contain; }
+.ticket-header .subtitulo{ font-size:.78rem; color:#5C6B68; margin-top:2px; }
+
+.ticket-separador{ border:none; border-top:1px dashed #B9C6C2; margin:14px 0; }
+
+.ticket-meta{ font-size:.78rem; color:#5C6B68; }
+.ticket-meta div{ display:flex; justify-content:space-between; gap:12px; margin-bottom:2px; }
+
+.ticket-tabla{ width:100%; font-size:.8rem; border-collapse:collapse; margin-top:10px; }
+.ticket-tabla th{ text-align:left; border-bottom:1px solid #DAE3E0; padding-bottom:4px; font-size:.7rem; text-transform:uppercase; letter-spacing:.03em; color:#5C6B68; }
+.ticket-tabla td{ padding:5px 0; vertical-align:top; }
+.ticket-tabla .col-num{ text-align:right; white-space:nowrap; }
+.ticket-tabla tr.fila-item td{ border-bottom:1px dotted #E7ECEA; }
+
+.ticket-total-row{ display:flex; justify-content:space-between; font-size:1.05rem; font-weight:700; margin-top:12px; color:var(--ticket-brand-dark, #0B4F42); }
+.ticket-subtotal-row{ display:flex; justify-content:space-between; font-size:.82rem; color:#5C6B68; margin-top:4px; }
+
+.ticket-nota{ font-size:.76rem; color:#5C6B68; margin-top:14px; }
+
+.ticket-acciones{ text-align:center; margin-top:20px; display:flex; gap:8px; justify-content:center; }
+.ticket-acciones button, .ticket-acciones a{
+  font-family:'Inter', sans-serif; font-size:.85rem; font-weight:600;
+  padding:8px 16px; border-radius:8px; border:1px solid var(--ticket-brand, #0F6E5C); cursor:pointer;
+  text-decoration:none; display:inline-block;
+}
+.ticket-acciones .btn-primario{ background:var(--ticket-brand, #0F6E5C); color:#fff; }
+.ticket-acciones .btn-secundario{ background:#fff; color:var(--ticket-brand-dark, #0B4F42); }
+
+.badge-tipo{
+  display:inline-block; font-size:.68rem; font-weight:700; text-transform:uppercase;
+  letter-spacing:.03em; padding:2px 8px; border-radius:6px; background:#E4F1EE; color:var(--ticket-brand-dark, #0B4F42);
+}
+
+@media print{
+  body{ background:#fff; padding:0; }
+  .ticket{ border:none; box-shadow:none; max-width:100%; padding:0; }
+  .no-imprimir{ display:none !important; }
+}

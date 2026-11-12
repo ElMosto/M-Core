@@ -1,0 +1,7 @@
+rfc_receptor,razon_receptor,uso_cfdi,total,metodo_pago
+XAXX010101000,Público en general,G03,1160.00,PUE
+GARC800101AB1,Juan García Pérez,G01,3480.50,PUE
+MAL0912153Q2,María Alonso López,G03,999.99,PPD
+XXX010101000,RFC con formato inválido,G03,500.00,PUE
+ABC120101AB1,Comercializadora Ejemplo,Z99,750.00,PUE
+DEF130202CD2,Sin total válido,G03,0,PUE
