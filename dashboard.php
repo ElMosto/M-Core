@@ -6,7 +6,7 @@ $pageTitle   = 'Panel de control';
 $activeNav   = 'dashboard';
 $headerTitle = 'Panel de control';
 $headerSub   = 'Resumen general del sistema';
-$extraScripts = ['assets/js/dashboard.js?v=5'];
+$extraScripts = ['assets/js/dashboard.js?v=6'];
 include __DIR__ . '/includes/layout-top.php';
 ?>
 

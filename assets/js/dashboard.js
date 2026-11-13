@@ -171,17 +171,22 @@ async function renderDashboard() {
   const activos = lista.filter(x => disponibles.includes(x.id));
   const container = document.getElementById('dashboard-widgets');
   container.innerHTML = '';
-  for (const w of activos) {
+  // Crea primero todas las celdas con su tamaño para que el grid calcule el layout de una vez.
+  const cells = activos.map(w => {
     const cell = document.createElement('div');
     cell.className = 'widget-cell';
     cell.style.gridColumn = `span ${w.span}`;
     container.appendChild(cell);
+    return { w, cell };
+  });
+  // Renderiza el contenido en paralelo.
+  await Promise.all(cells.map(async ({ w, cell }) => {
     try {
       await RENDERERS[w.id](cell);
     } catch (e) {
       cell.innerHTML = `<div class="hint">No se pudo cargar el widget ${w.id}.</div>`;
     }
-  }
+  }));
   if (!activos.length) {
     container.innerHTML = '<div class="hint">No hay widgets seleccionados. Usa "Personalizar dashboard".</div>';
   }
