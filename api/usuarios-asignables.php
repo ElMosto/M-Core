@@ -22,20 +22,14 @@ if (!$usuario || !in_array($usuario['rol'], ['admin', 'lider_proyecto'], true)) 
 }
 
 $pdo = timbra_db();
-$rolesAsignables = timbra_roles_con_modulo($pdo, 'tareas');
-
-if (!$rolesAsignables) {
-    timbra_json([]);
-}
-
-$marcadores = implode(',', array_fill(0, count($rolesAsignables), '?'));
+// Se permite asignar a cualquier usuario activo (todos los roles), excepto admin.
 $stmt = $pdo->prepare("
     SELECT u.id, u.nombre, u.rol, r.nombre AS rol_nombre
     FROM usuarios u
     LEFT JOIN roles r ON r.clave = u.rol
-    WHERE u.activo = 1 AND u.rol IN ({$marcadores})
+    WHERE u.activo = 1 AND u.rol <> 'admin'
     ORDER BY u.nombre ASC
 ");
-$stmt->execute($rolesAsignables);
+$stmt->execute();
 
 timbra_json($stmt->fetchAll(PDO::FETCH_ASSOC));

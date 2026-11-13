@@ -172,12 +172,11 @@ if ($accion === 'crear') {
     if ($asignadoA === null) {
         $errores['asignado_a'] = 'Toda tarea necesita alguien responsable — elige a quién se le asigna.';
     } else {
-        $stmt = $pdo->prepare('SELECT rol FROM usuarios WHERE id = ? AND activo = 1');
+        $stmt = $pdo->prepare('SELECT id FROM usuarios WHERE id = ? AND activo = 1');
         $stmt->execute([$asignadoA]);
-        $rolAsignado = $stmt->fetchColumn();
-        $rolesAsignables = timbra_roles_con_modulo($pdo, 'tareas');
-        if (!$rolAsignado || !in_array($rolAsignado, $rolesAsignables, true)) {
-            $errores['asignado_a'] = 'Solo puedes asignar a alguien activo cuyo rol tenga acceso al módulo de Tareas.';
+        $existeAsignado = $stmt->fetchColumn();
+        if (!$existeAsignado) {
+            $errores['asignado_a'] = 'Selecciona un usuario activo.';
         }
     }
 
@@ -307,12 +306,11 @@ if ($accion === 'editar') {
     if ($asignadoA === null) {
         $errores['asignado_a'] = 'Toda tarea necesita alguien responsable — elige a quién se le asigna.';
     } else {
-        $stmt = $pdo->prepare('SELECT rol FROM usuarios WHERE id = ? AND activo = 1');
+        $stmt = $pdo->prepare('SELECT id FROM usuarios WHERE id = ? AND activo = 1');
         $stmt->execute([$asignadoA]);
-        $rolAsignado = $stmt->fetchColumn();
-        $rolesAsignables = timbra_roles_con_modulo($pdo, 'tareas');
-        if (!$rolAsignado || !in_array($rolAsignado, $rolesAsignables, true)) {
-            $errores['asignado_a'] = 'Solo puedes asignar a alguien activo cuyo rol tenga acceso al módulo de Tareas.';
+        $existeAsignado = $stmt->fetchColumn();
+        if (!$existeAsignado) {
+            $errores['asignado_a'] = 'Selecciona un usuario activo.';
         }
     }
 
